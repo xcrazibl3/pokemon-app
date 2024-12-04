@@ -35,6 +35,21 @@ export class AppComponent {
 
           this.pokemonList = pokemonDetails;
         });
-      });
+      })
+      .catch((error) => console.log('Pokemonlist error: ', error));
+  }
+
+  addPokemonByName(name: string) {
+    const apiUrl = `https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`;
+
+    fetch(apiUrl)
+      .then((response) => response.json())
+      .then((data) => {
+        /*if (!thisVariable) {
+          throw new Error('Something happened')
+        }*/
+        this.pokemonList.push(data);
+      })
+      .catch((error) => console.log('Add pokemon to list error :', error));
   }
 }

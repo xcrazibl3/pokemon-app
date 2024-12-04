@@ -4,13 +4,31 @@
   <!-- Display Pokemon list if any -->
   <ul *ngIf="pokemonList.length" class="pokemon-list">
     <li *ngFor="let pokemon of pokemonList" class="pokemon-list__item">
-      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+      <img
+        [src]="pokemon.sprites.front_default"
+        [alt]="pokemon.name"
+        class="pokemon-list__image"
+        :class="{
+          'pokemon-list__image--front': frontIsShown,
+          'pokemon-list__image--back': !frontIsShown,
+        }"
+      />
 
       <span class="pokemon-list__name">
         {{ pokemon.name }}
       </span>
     </li>
   </ul>
+
+  <!-- Add pokemon by name -->
+  <div>
+    <h2>Add Pokemon by name</h2>
+
+    <!-- #pokemonName is bound directly to use in button click -->
+    <input #pokemonName type="text" placeholder="Enter Pokemon name" />
+
+    <button (click)="addPokemonByName(pokemonName.value)">Add Pokemon</button>
+  </div>
 </main>
 
 <router-outlet />

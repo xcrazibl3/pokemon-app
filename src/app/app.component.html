@@ -1,5 +1,16 @@
 <main class="main">
   <h1 class="main__title">Pokemon App</h1>
+
+  <!-- Display Pokemon list if any -->
+  <ul *ngIf="pokemonList.length" class="pokemon-list">
+    <li *ngFor="let pokemon of pokemonList" class="pokemon-list__item">
+      <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+
+      <span class="pokemon-list__name">
+        {{ pokemon.name }}
+      </span>
+    </li>
+  </ul>
 </main>
 
 <router-outlet />
